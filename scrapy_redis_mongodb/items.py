@@ -14,9 +14,15 @@ class ScrapyRedisMongodbItem(scrapy.Item):
     url = scrapy.Field()
 
 class data_redis_mongodb(scrapy.Item):
-    url = scrapy.Field()
-    title = scrapy.Field()
-    place = scrapy.Field()
-    types = scrapy.Field()
-    num = scrapy.Field()
+    PostURL = scrapy.Field()
+    PostId=scrapy.Field()
+    RecruitPostName = scrapy.Field()
+    LocationName = scrapy.Field()
+    BGName = scrapy.Field()
+    CategoryName = scrapy.Field()
+    Responsibility=scrapy.Field()
+    Requirement=scrapy.Field()
+    LastUpdateTime=scrapy.Field()
+
+
 

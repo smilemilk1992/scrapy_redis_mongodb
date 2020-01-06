@@ -1,4 +1,4 @@
-#coding:utf-8
+# -*- coding: utf-8 -*-
 #https://github.com/qiyeboy/jiandan_2
 
 import random

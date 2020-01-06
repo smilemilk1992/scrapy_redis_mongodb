@@ -19,11 +19,16 @@ class RedisPipeline(object):
         self.redis_db = redis.Redis(host=settings.REDIS_SERVER, port=settings.REDIS_PORT, db=settings.REDIS_DB)  # redis数据库连接信息
 
     def process_item(self, item, spider):
-        if self.redis_db.exists(item['url']):
-            raise DropItem('%s id exists!!' % (item['url']))
-        else:
-            self.redis_db.lpush(self.redis_table, item['url'])
+        self.redis_db.lpush(self.redis_table, item['url'])
         return item
+if __name__ == '__main__':
+    a=RedisPipeline()
+    a.redis_db.sadd("myspider:start_urls","https://careers.tencent.com/jobdesc.html?postId=1214093466452103168")
+    # if self.redis_db.sismember(self.redis_table, item['url']):
+    #     raise DropItem('%s id exists!!' % (item['url']))
+    # else:
+    #     self.redis_db.sadd(self.redis_table, item['url'])
+    # return item
 
 
 class  MgdbPipeline(object):
@@ -54,11 +59,11 @@ class  MgdbPipeline(object):
 
             '''
         else:
-            raise DropItem("{} is exist".format(item['url']))
+            raise DropItem("{} is exist".format(item['PostURL']))
         return item
 
     def site_item_exist(self, item):
-        if self.MG_table.find_one({"url": item['url']}):
+        if self.MG_table.find_one({"PostURL": item['PostURL']}):
             return False
         else:
             return True
